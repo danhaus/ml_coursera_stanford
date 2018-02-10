@@ -21,16 +21,11 @@ grad = zeros(size(theta));
 
 predictions = X*theta;              % predictions of hypothesis on examples
 sqrErrors   = (predictions - y).^2; % squared errors
-theta0 = [0, theta(2:end)] % not regularize the first term (replace it by zero)
+theta0 = [0; theta(2:end)]; % not regularize the first term (replace it by zero)
 
 J = 1/(2*m) * sum(sqrErrors) + (lambda/(2*m))*(theta0'*theta0);
 
-
-
-
-
-
-
+grad = (1/m) * (X' * (predictions - y) + lambda * theta0);
 
 
 % =========================================================================
